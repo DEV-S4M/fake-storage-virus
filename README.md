@@ -8,8 +8,7 @@ To run this program, you need to have Python 3.6 or later installed on your comp
 
 ## Installation
 
-To install the required packages, open the command prompt and navigate to the directory where you downloaded the program. Then run the following command:
-`pip install -r requirements.txt`
+Required packages should be installed automatically on the first launch of the progream
 
 
 ## Usage
@@ -17,6 +16,9 @@ To install the required packages, open the command prompt and navigate to the di
 To use the program, simply open the `virus.py` file in a Python editor or IDE of your choice and run it. This will create a `data` folder in the same directory as the `virus.py` file and fill it with a bunch of useless random files.
 
 **Note:** This program is meant to be a harmless prank. Please do not use it to cause harm or damage to anyone's computer.
+
+## Exe version
+An EXE version is available within the releases
 
 ## Credits
 
