@@ -2,6 +2,10 @@
 
 This is a simple fake virus program that creates a bunch of useless random files within a data folder it creates. It's meant to be a harmless prank to play on your friends. 
 
+## Threadmode vs non threadmode
+To change between threadmode, simply change the threadmode variable at the top to 'True' to use threading and 'False' to not.
+Threading mode can and most likely will cause your/your friends PC to freeze up, rendering it useless until it's restarted. 
+
 ## Prerequisites
 
 To run this program, you need to have Python 3.6 or later installed on your computer. You can download the latest version of Python from the official website: https://www.python.org/downloads/
